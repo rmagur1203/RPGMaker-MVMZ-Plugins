@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+@import url("https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css");
+
+#rpgmaker-save-ax34btrap {
+  z-index: 10;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "injector",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "rmagur1203 <41236839+rmagur1203@users.noreply.github.com>",
+  "homepage": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "bin": {
+    "injector": "dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins.git"
+  },
+  "scripts": {
+    "test": "ts-node src/cli.ts -f ../save/dist/cheat.js -i ../save/info.json \"E:\\Games\\temp\\RJ01090479\"",
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins/issues"
+  },
+  "dependencies": {
+    "commander": "^11.1.0"
+  }
+}

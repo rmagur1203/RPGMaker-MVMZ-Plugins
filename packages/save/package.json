@@ -1,0 +1,37 @@
+{
+  "name": "save",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "rmagur1203 <41236839+rmagur1203@users.noreply.github.com>",
+  "homepage": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins#readme",
+  "license": "ISC",
+  "main": "src/index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins.git"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.ts",
+    "inject": "injector -f dist/cheat.js -i info.json"
+  },
+  "bugs": {
+    "url": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.1",
+    "@types/webpack": "^5.28.5",
+    "css-loader": "^6.8.1",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "swc-loader": "^0.2.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "styled-components": "^6.1.1"
+  }
+}
