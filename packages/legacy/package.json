@@ -1,0 +1,21 @@
+{
+  "name": "legacy",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "rmagur1203 <41236839+rmagur1203@users.noreply.github.com>",
+  "homepage": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins.git"
+  },
+  "scripts": {
+    "inject": "node ./scripts/inject.js"
+  },
+  "bugs": {
+    "url": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins/issues"
+  }
+}

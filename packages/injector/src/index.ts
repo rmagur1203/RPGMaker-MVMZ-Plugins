@@ -17,6 +17,7 @@ export default function inject(
   setupFile?: string
 ) {
   const root = fs.existsSync(join(path, "www")) ? join(path, "www") : path;
+  global.root = root;
 
   const plugins = loadPluginsJS(root);
 

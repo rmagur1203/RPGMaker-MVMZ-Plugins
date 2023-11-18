@@ -9,6 +9,7 @@ const vm_1 = __importDefault(require("vm"));
 const plugin_1 = require("./utils/plugin");
 function inject(path, jsFile, infoFile, setupFile) {
     const root = fs_1.default.existsSync((0, path_1.join)(path, "www")) ? (0, path_1.join)(path, "www") : path;
+    global.root = root;
     const plugins = loadPluginsJS(root);
     injectPlugins(root, plugins, jsFile, infoFile, setupFile);
     patchPluginJS(root, plugins);
