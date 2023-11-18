@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.ts",
-    "inject": "injector -f dist/cheat.js -i info.json"
+    "inject": "injector -f dist/save.js -i info.json"
   },
   "bugs": {
     "url": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins/issues"

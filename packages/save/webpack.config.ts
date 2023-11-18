@@ -10,10 +10,10 @@ const config: webpack.Configuration = {
   devtool: isDev ? "inline-source-map" : false,
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "cheat.js",
-    library: "cheat",
+    filename: "save.js",
+    library: "save",
     libraryTarget: "umd",
-    sourceMapFilename: "cheat.js.map",
+    sourceMapFilename: "save.js.map",
   },
   module: {
     rules: [
