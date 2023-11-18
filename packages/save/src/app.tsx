@@ -1,11 +1,63 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Option from "./components/option";
+import JSZip from "jszip";
+import { GetSaveManager, SaveManager } from "./libs";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [saveManager, setSaveManager] = useState<SaveManager>();
 
   const toggle = () => setIsOpen(!isOpen);
+
+  function load() {
+    if (!saveManager) return;
+    console.log("load", saveManager);
+    Promise.all(
+      saveManager.savefileIds.map(async (id) => {
+        const data = await saveManager.load(id, true);
+        if (!data) return;
+        await saveManager.save(id, data);
+      })
+    ).then(() => {
+      SceneManager.push(Scene_Title);
+    });
+  }
+
+  async function download() {
+    if (!saveManager) return;
+    const zip = new JSZip();
+
+    for (const id of saveManager.savefileIds) {
+      const data = await saveManager.download(id);
+      if (!data) continue;
+      zip.file(data.name, data.data);
+    }
+
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      const a = document.createElement("a");
+      const url = URL.createObjectURL(content);
+      a.href = url;
+      a.download = "save.zip";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  function reset() {
+    if (!saveManager) return;
+    Promise.all(
+      saveManager.savefileIds.map(async (id) => {
+        await saveManager.reset(id);
+      })
+    ).then(() => {
+      SceneManager.push(Scene_Title);
+    });
+  }
+
+  useEffect(() => {
+    setSaveManager(GetSaveManager());
+  }, []);
 
   return (
     <Menu onClick={() => toggle()}>
@@ -15,9 +67,9 @@ const App = () => {
       </Button>
       {isOpen && (
         <Options>
-          <Option icon="bx-save" text="Load" />
-          <Option icon="bx-download" text="Download" />
-          <Option icon="bx-reset" text="Reset" />
+          <Option icon="bx-save" text="Load" onClick={load} />
+          <Option icon="bx-download" text="Download" onClick={download} />
+          <Option icon="bx-reset" text="Reset" onClick={reset} />
         </Options>
       )}
     </Menu>
