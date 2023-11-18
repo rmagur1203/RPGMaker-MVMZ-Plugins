@@ -20,6 +20,8 @@ const App = () => {
         await saveManager.save(id, data);
       })
     ).then(() => {
+      DataManager.loadGlobalInfo();
+      ConfigManager.load();
       SceneManager.push(Scene_Title);
     });
   }
@@ -51,6 +53,8 @@ const App = () => {
         await saveManager.reset(id);
       })
     ).then(() => {
+      DataManager.loadGlobalInfo();
+      ConfigManager.load();
       SceneManager.push(Scene_Title);
     });
   }

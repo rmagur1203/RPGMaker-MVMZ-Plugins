@@ -1,5 +1,7 @@
 import { FileType, SaveManager } from "./Base";
 
+declare var StorageManager: StorageManagerStatic;
+
 export class SaveManagerMZ extends SaveManager {
   private static _instance: SaveManagerMZ | null = null;
 
@@ -14,35 +16,76 @@ export class SaveManagerMZ extends SaveManager {
     return Utils.RPGMAKER_NAME === "MZ";
   }
 
+  constructor() {
+    super();
+    if (!StorageManager.isLocalMode())
+      StorageManager.fileDirectoryPath = () => "save/";
+  }
+
   get savefileIds(): number[] {
-    return [-1, ...Array(DataManager.maxSavefiles() + 1).keys()];
+    return [
+      -2,
+      -1,
+      ...Array(
+        DataManager.maxSavefiles() - ($gameSystem.isAutosaveEnabled() ? 0 : 1)
+      ).keys(),
+    ];
   }
 
-  load(savefileId: number, local?: boolean | undefined): Promise<string> {
-    throw new Error("Method not implemented.");
+  private webStorageKey(savefileId: number) {
+    if (savefileId === -2) return "config";
+    if (savefileId === -1) return "global";
+    return DataManager.makeSavename(savefileId);
   }
 
-  loadLocalFile(path: string): Promise<string> {
-    throw new Error("Method not implemented.");
+  load(
+    savefileId: number,
+    local?: boolean | undefined
+  ): Promise<string | null> {
+    if (local) {
+      return this.loadWithKey(
+        StorageManager.filePath(this.webStorageKey(savefileId)),
+        local
+      );
+    } else {
+      return this.loadWithKey(this.webStorageKey(savefileId), local);
+    }
   }
 
-  loadWithKey(key: string, local?: boolean | undefined): Promise<string> {
-    throw new Error("Method not implemented.");
+  async loadWithKey(
+    keyOrPath: string,
+    local?: boolean | undefined
+  ): Promise<string | null> {
+    if (local) {
+      return await this.loadLocalFile(keyOrPath)
+        .then(StorageManager.zipToJson)
+        .then((x) => (x === "null" ? null : x))
+        .catch(() => null);
+    } else {
+      return StorageManager.loadFromForage(keyOrPath);
+    }
   }
 
   save(savefileId: number, json: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    return this.saveWithKey(this.webStorageKey(savefileId), json);
   }
 
-  saveWithKey(key: string, json: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  async saveWithKey(key: string, json: string): Promise<void> {
+    const zip = await StorageManager.jsonToZip(json);
+    return await StorageManager.saveToForage(key, zip);
   }
 
-  download(savefileId: number): Promise<FileType | null> {
-    throw new Error("Method not implemented.");
+  async download(savefileId: number): Promise<FileType | null> {
+    const data = await this.load(savefileId);
+    if (!data) return null;
+    return {
+      name: StorageManager.localFilePath(savefileId),
+      data: LZString.compressToBase64(data),
+    };
   }
 
-  reset(savefileId: number): Promise<void> {
-    throw new Error("Method not implemented.");
+  async reset(savefileId: number): Promise<void> {
+    const key = StorageManager.forageKey(this.webStorageKey(savefileId));
+    return localforage.removeItem(key);
   }
 }

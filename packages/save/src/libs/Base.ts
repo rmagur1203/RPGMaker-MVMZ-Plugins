@@ -12,11 +12,14 @@ export abstract class SaveManager {
 
   abstract load(savefileId: number, local?: boolean): Promise<string | null>;
 
-  abstract loadWithKey(key: string, local?: boolean): Promise<string | null>;
+  abstract loadWithKey(
+    keyOrPath: string,
+    local?: boolean
+  ): Promise<string | null>;
 
   abstract save(savefileId: number, json: string): Promise<void>;
 
-  abstract saveWithKey(key: string, json: string): Promise<void>;
+  abstract saveWithKey(keyOrPath: string, json: string): Promise<void>;
 
   abstract reset(savefileId: number): Promise<void>;
 

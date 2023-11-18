@@ -6716,6 +6716,7 @@ declare class DataManager {
    */
   static saveGame(savefileId: number): boolean;
   static loadGame(savefileId: number): boolean;
+  static makeSavename(savefileId: number): string;
   /**
    * Returns the last accessed save fileId upon
    * saving or loading the game.
@@ -7555,6 +7556,7 @@ declare class Game_System {
   isRussian(): boolean;
   isSideView(): boolean;
   isSaveEnabled(): boolean;
+  isAutosaveEnabled(): boolean;
   disableSave(): void;
   enableSave(): void;
   isMenuEnabled(): boolean;
