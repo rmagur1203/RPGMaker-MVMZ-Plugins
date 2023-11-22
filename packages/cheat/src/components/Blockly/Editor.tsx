@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { BlocklyWorkspace } from "react-blockly";
+import React, { useState, useEffect } from "react";
+import { BlocklyWorkspace, ToolboxDefinition } from "react-blockly";
 import { Box, Modal } from "@mui/material";
 import styled from "styled-components";
+import Blockly from "blockly";
 
 interface EditorProps {
   open: boolean;
   onClose: () => void;
 }
 
-const toolboxCategories = {
+const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([{}]);
+
+const toolboxCategories: ToolboxDefinition = {
   kind: "categoryToolbox",
   contents: [
     {
@@ -61,6 +64,11 @@ const toolboxCategories = {
 
 export default function ({ open, onClose }: EditorProps) {
   const [json, setJson] = useState<object>();
+
+  useEffect(() => {
+    console.log(json);
+  }, [json]);
+
   return (
     <Modal
       open={open}
