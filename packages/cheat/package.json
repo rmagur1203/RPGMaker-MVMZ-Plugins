@@ -37,7 +37,9 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "blockly": "^10.2.2",
+    "node-blockly": "^1.2.8",
     "react-blockly": "^8.1.0",
+    "react-blockly-drawer": "https://github.com/RPGMaker-MV-MZ-Plugins/react-blockly-drawer",
     "styled-components": "^6.1.1"
   }
 }
