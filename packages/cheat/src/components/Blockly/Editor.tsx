@@ -1,70 +1,15 @@
-import React, { useState } from "react";
-import { BlocklyWorkspace } from "react-blockly";
-import Blockly from "node-blockly";
-import BlocklyDrawer, { Block, Category } from "react-blockly-drawer";
+import React, { useState, useEffect } from "react";
+import Blockly from "node-blockly/browser";
+import RawBlockly from "blockly";
+import BlocklyDrawer, { Tool, Block, Category } from "react-blockly-drawer";
 import { Box, Modal } from "@mui/material";
-import styled from "styled-components";
-import Blockly from "blockly";
 
 interface EditorProps {
   open: boolean;
   onClose: () => void;
 }
 
-const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([{}]);
-
-const toolboxCategories: ToolboxDefinition = {
-  kind: "categoryToolbox",
-  contents: [
-    {
-      kind: "category",
-      name: "Logic",
-      colour: "#5C81A6",
-      contents: [
-        {
-          kind: "block",
-          type: "controls_if",
-        },
-        {
-          kind: "block",
-          type: "logic_compare",
-        },
-      ],
-    },
-    {
-      kind: "category",
-      name: "Math",
-      colour: "#5CA65C",
-      contents: [
-        {
-          kind: "block",
-          type: "math_round",
-        },
-        {
-          kind: "block",
-          type: "math_number",
-        },
-      ],
-    },
-    {
-      kind: "category",
-      name: "Custom",
-      colour: "#5CA699",
-      contents: [
-        {
-          kind: "block",
-          type: "new_boundary_function",
-        },
-        {
-          kind: "block",
-          type: "return",
-        },
-      ],
-    },
-  ],
-};
-
-const helloWorld = {
+const helloWorld: Tool = {
   name: "HelloWorld",
   category: "Demo",
   block: {
@@ -140,8 +85,3 @@ export default function ({ open, onClose }: EditorProps) {
     </Modal>
   );
 }
-
-const Workspace = styled(BlocklyWorkspace)`
-  width: 100%;
-  height: 100%;
-`;

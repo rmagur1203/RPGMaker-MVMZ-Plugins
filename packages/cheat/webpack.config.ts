@@ -44,6 +44,9 @@ const config: webpack.Configuration = {
         /* options: see below */
       }),
     ],
+    fallback: {
+      path: require.resolve("path-browserify"),
+    },
   },
 };
 

@@ -1,15 +1,35 @@
 declare module "react-blockly-drawer" {
+  import React from "react";
+  import Blockly from "node-blockly";
+
+  export type Tool = {
+    name: string;
+    category: string;
+    block: {
+      init: (this: Blockly.Block) => void;
+    };
+    generator: (block: Blockly.Block) => void;
+  };
+
   export default React.Component<{
-    tools?: any;
-    onChange?: (any, any) => any;
-    language?: any;
-    appearance?: any;
-    children?: any;
+    tools: Tool[];
+    language?: object;
+    injectOptions?: object;
+    workspaceXML?: string;
+    appearance?: object;
+    onChange?: (code: string, xml: string) => any;
+    children?: React.ReactNode;
+    className?: string;
+    style?: object;
   }>;
 
-  export const Category: React.Component<{
+  export declare const Block: React.FunctionComponent<{
+    type: string;
+  }>;
+
+  export declare const Category: React.FunctionComponent<{
     name: string;
-    custom: string;
-    children?: any;
+    custom?: string;
+    children?: React.ReactNode;
   }>;
 }
