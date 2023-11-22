@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { BlocklyWorkspace } from "react-blockly";
+import Blockly from "node-blockly";
+import BlocklyDrawer, { Block, Category } from "react-blockly-drawer";
 import { Box, Modal } from "@mui/material";
 import styled from "styled-components";
 
@@ -59,6 +61,33 @@ const toolboxCategories = {
   ],
 };
 
+const helloWorld = {
+  name: "HelloWorld",
+  category: "Demo",
+  block: {
+    init: function () {
+      this.jsonInit({
+        message0: "Hello %1",
+        args0: [
+          {
+            type: "field_input",
+            name: "NAME",
+            check: "String",
+          },
+        ],
+        output: "String",
+        colour: 160,
+        tooltip: "Says Hello",
+      });
+    },
+  },
+  generator: (block) => {
+    const message = `'${block.getFieldValue("NAME")}'` || "''";
+    const code = `console.log('Hello ${message}')`;
+    return [code, Blockly.JavaScript.ORDER_MEMBER];
+  },
+};
+
 export default function ({ open, onClose }: EditorProps) {
   const [json, setJson] = useState<object>();
   return (
@@ -79,19 +108,26 @@ export default function ({ open, onClose }: EditorProps) {
           margin: "24px",
         }}
       >
-        <Workspace
-          toolboxConfiguration={toolboxCategories}
-          workspaceConfiguration={{
-            grid: {
-              spacing: 20,
-              length: 3,
-              colour: "#ccc",
-              snap: true,
+        <BlocklyDrawer
+          tools={[helloWorld]}
+          onChange={(code, workspace) => {
+            console.log(code, workspace);
+          }}
+          language={Blockly.JavaScript}
+          appearance={{
+            categories: {
+              Demo: {
+                colour: "270",
+              },
             },
           }}
-          initialJson={json}
-          onJsonChange={setJson}
-        />
+        >
+          <Category name="Variables" custom="VARIABLE" />
+          <Category name="Values">
+            <Block type="math_number" />
+            <Block type="text" />
+          </Category>
+        </BlocklyDrawer>
       </Box>
     </Modal>
   );
