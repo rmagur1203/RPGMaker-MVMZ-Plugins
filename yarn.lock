@@ -52,6 +52,11 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@blockly/block-shareable-procedures@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@blockly/block-shareable-procedures/-/block-shareable-procedures-4.0.4.tgz#e669ff71559459b432063458b45ba108d60b728b"
+  integrity sha512-NZhOGcVcE6E/Aw5xxKwNjM1CwSV5rgYpnbDWt9eCjV5rOo9tRUn+II/L/RtIjZfV+mfTD2UfDb4qZm21DLVJXg==
+
 "@blockly/disable-top-blocks@^0.4.7":
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/@blockly/disable-top-blocks/-/disable-top-blocks-0.4.7.tgz#056ae88e54c334dc6f0a36e280e469f1d184ecb4"
