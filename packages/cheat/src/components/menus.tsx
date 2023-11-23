@@ -110,8 +110,8 @@ export function generateListItem(
     const [open, setOpen] = React.useState(false);
 
     return (
-      <>
-        <ListItem key={item.name} disablePadding>
+      <div key={item.name}>
+        <ListItem disablePadding>
           <ListItemButton onClick={() => setOpen((open) => !open)}>
             {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
             <ListItemText primary={item.name} />
@@ -123,7 +123,7 @@ export function generateListItem(
             {item.items.map((subItem) => generateListItem(subItem, onClick))}
           </List>
         </Collapse>
-      </>
+      </div>
     );
   } else {
     return (

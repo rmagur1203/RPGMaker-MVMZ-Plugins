@@ -52,6 +52,11 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@blockly/disable-top-blocks@^0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@blockly/disable-top-blocks/-/disable-top-blocks-0.4.7.tgz#056ae88e54c334dc6f0a36e280e469f1d184ecb4"
+  integrity sha512-9Hjk/sC33jJ0wUyuFAhqcyPm7qAxr3rkwQTENWHBr7kfZ/KnNVlsCSg2io1qV21jOhuNAfpEkIDR19lu5Tz5Cw==
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1"
@@ -369,6 +374,18 @@
     rimraf "^3.0.2"
     semver "^7.3.5"
     tar "^6.1.11"
+
+"@mit-app-inventor/blockly-block-lexical-variables@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@mit-app-inventor/blockly-block-lexical-variables/-/blockly-block-lexical-variables-1.0.0.tgz#aaa492248a44303e4bb491f1f40bcdd9bf7252d1"
+  integrity sha512-7mnC/B94L/SVtIwlOIqH8+nhhLdozJcG9/IOUGxjlsCRvU/zz9qK6P52MU8bC6xHTvFv+O+iSJmPHkPBVJ/M2Q==
+
+"@mit-app-inventor/blockly-plugin-workspace-multiselect@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@mit-app-inventor/blockly-plugin-workspace-multiselect/-/blockly-plugin-workspace-multiselect-0.1.10.tgz#34b9714b43c47db5b9d6efb18e5c70a5f03f438e"
+  integrity sha512-SVyL1Qj3Tta5p/N+7SlGbxJPSpXQJ8wiykDtOfhVsqL8d0U3OYcio9g1G+AnntYegfmMgTT/AihfEYBKJAJK4A==
+  dependencies:
+    dragselect "^3.0.4"
 
 "@mole-inc/bin-wrapper@^8.0.1":
   version "8.0.1"
@@ -2441,6 +2458,11 @@ dotenv@~16.3.1:
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
   integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
+
+dragselect@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/dragselect/-/dragselect-3.0.4.tgz#85974e42c8e21e32233796373dbfd667d76e9420"
+  integrity sha512-LkGjPpkBGsIFyM9UsOM0wkMhUHuwhlHCDouufy2Zyroghhoj0RHSXnl78imvDWdlvFUk3Q5SXTXh0HfAC/NMrw==
 
 duplexer@^0.1.1:
   version "0.1.2"
@@ -5275,9 +5297,9 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
-"react-blockly-drawer@https://github.com/RPGMaker-MV-MZ-Plugins/react-blockly-drawer":
+"react-blockly-drawer@https://github.com/RPGMaker-MV-MZ-Plugins/react-blockly-drawer#2608956ef7f3e68b83842b72e0ba0ddedd7db2a8":
   version "1.7.2"
-  resolved "https://github.com/RPGMaker-MV-MZ-Plugins/react-blockly-drawer#cb5ca9cb94753d04a270eea62c4644c61549d0b8"
+  resolved "https://github.com/RPGMaker-MV-MZ-Plugins/react-blockly-drawer#2608956ef7f3e68b83842b72e0ba0ddedd7db2a8"
   dependencies:
     node-blockly "https://github.com/RPGMaker-MV-MZ-Plugins/node-blockly#0ea4077d251ae5a729de7ef206b47908646d1fca"
     prop-types "^15.7.2"

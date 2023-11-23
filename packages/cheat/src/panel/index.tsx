@@ -94,8 +94,8 @@ export default function () {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          {menus.map((menu) => (
-            <List>
+          {menus.map((menu, i) => (
+            <List key={i}>
               {menu.map((item) =>
                 generateListItem(item, (item) => {
                   if (isCollapsableMenu(item)) {

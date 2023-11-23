@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV !== "production";
 const config: webpack.Configuration = {
   mode: isDev ? "development" : "production",
   entry: "./src/index.tsx",
-  devtool: isDev ? "inline-source-map" : false,
+  devtool: isDev ? "eval-source-map" : false,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "cheat.js",
