@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 const App = () => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const onKeyUp = useCallback((event: KeyboardEvent) => {
     if (event.ctrlKey && event.shiftKey && event.code === "KeyE") {

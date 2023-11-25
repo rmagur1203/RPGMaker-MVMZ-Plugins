@@ -52,6 +52,11 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@blockly/block-dynamic-connection@^0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@blockly/block-dynamic-connection/-/block-dynamic-connection-0.5.4.tgz#b7b05f0fa789c0fe7793424836d7fbef2105e757"
+  integrity sha512-3Ar5Fxtb0ln7LND06xDX+o+lG9MONBwnsFU9ce0H7DSTmG+vSq53bFJPnKB+5iU1P38QhHFPmBx0t80dJ0rnOg==
+
 "@blockly/block-shareable-procedures@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@blockly/block-shareable-procedures/-/block-shareable-procedures-4.0.4.tgz#e669ff71559459b432063458b45ba108d60b728b"
@@ -61,6 +66,11 @@
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/@blockly/disable-top-blocks/-/disable-top-blocks-0.4.7.tgz#056ae88e54c334dc6f0a36e280e469f1d184ecb4"
   integrity sha512-9Hjk/sC33jJ0wUyuFAhqcyPm7qAxr3rkwQTENWHBr7kfZ/KnNVlsCSg2io1qV21jOhuNAfpEkIDR19lu5Tz5Cw==
+
+"@blockly/zoom-to-fit@^5.0.9":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@blockly/zoom-to-fit/-/zoom-to-fit-5.0.9.tgz#ec63c0962afc845ffdd9944b2506a29691e2671e"
+  integrity sha512-i6TByzG0e/i1YOAJAp9yFa50JV3O2j+Jn8hFdn/ERnqFbSIS2038AbS/EM9DaOerDcck4nLIGm3wA6FILN9lNA==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"

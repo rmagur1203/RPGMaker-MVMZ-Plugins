@@ -43,6 +43,14 @@ export default React.forwardRef<Blockly.WorkspaceSvg, Props>((props, ref) => {
     const workspace = Blockly.inject(workspaceRef.current, {
       toolbox: toolboxRef.current,
       renderer: "thrasos",
+      zoom: {
+        controls: true,
+        wheel: true,
+        startScale: 1.0,
+        maxScale: 3,
+        minScale: 0.3,
+        scaleSpeed: 1.2,
+      },
     });
 
     setWorkspace(workspace);

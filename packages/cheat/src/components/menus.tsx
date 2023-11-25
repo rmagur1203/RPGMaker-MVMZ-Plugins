@@ -47,6 +47,11 @@ var _menus: (Menu | CollapsableMenu)[][] = [
       icon: <AddShoppingCart />,
       items: [
         {
+          name: "Map Events",
+          icon: <AddCircle />,
+          panel: <Panels.Event.Events />,
+        },
+        {
           name: "Common Events",
           icon: <AddCircle />,
           panel: <Panels.Event.CommonEvents />,

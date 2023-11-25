@@ -1,5 +1,5 @@
 import * as Torigoya from "./Torigoya";
-import * as Event from "./Event";
+import * as Event from "./Events";
 
 export default {
   Torigoya,

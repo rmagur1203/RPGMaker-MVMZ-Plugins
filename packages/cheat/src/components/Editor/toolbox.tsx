@@ -400,6 +400,7 @@ export default React.forwardRef((props, ref) => {
       </Category>
       <Category name="Command" colour="#3333ff">
         <Block type="nop" />
+        <Block type="unknown_command" />
       </Category>
       <Category name="Game Variables" colour="#a55b80">
         <Block type="get_game_variable" />

@@ -19,7 +19,7 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Menu,
   generateListItem,
@@ -34,6 +34,7 @@ export default function () {
   const menus = useMenu();
   const [open, setOpen] = React.useState(false);
   const [item, setItem] = React.useState<Menu>(menus[0][0]);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -42,6 +43,13 @@ export default function () {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    ref.current?.addEventListener("mousedown", (event) => {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    });
+  }, [ref.current]);
 
   return (
     <>
@@ -52,6 +60,7 @@ export default function () {
           width: "100%",
           height: "100%",
         }}
+        ref={ref}
       >
         <CssBaseline />
         <AppBar position="absolute" open={open}>

@@ -35,8 +35,10 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@blockly/block-dynamic-connection": "^0.5.4",
     "@blockly/block-shareable-procedures": "^4.0.4",
     "@blockly/disable-top-blocks": "^0.4.7",
+    "@blockly/zoom-to-fit": "^5.0.9",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mit-app-inventor/blockly-block-lexical-variables": "^1.0.0",
