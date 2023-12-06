@@ -9,11 +9,12 @@ const _1 = __importDefault(require("."));
 const path_1 = require("path");
 commander_1.program.name("injector");
 commander_1.program
-    .argument("path", "Path to the file to inject")
+    .argument("[path]", "Path to the file to inject")
     .requiredOption("-f, --file <file>", "file path to inject")
     .requiredOption("-i, --info <info>", "info file path to inject")
     .option("-s, --setup <setup>", "setup file path to inject")
     .action((path, options) => {
-    (0, _1.default)(path, (0, path_1.resolve)(options.file), (0, path_1.resolve)(options.info), options.setup && (0, path_1.resolve)(options.setup));
+    console.assert(path || process.env.INJECTOR_PATH, "Path to the file to inject is required");
+    (0, _1.default)(path || process.env.INJECTOR_PATH, (0, path_1.resolve)(options.file), (0, path_1.resolve)(options.info), options.setup && (0, path_1.resolve)(options.setup));
 });
 commander_1.program.parse(process.argv);

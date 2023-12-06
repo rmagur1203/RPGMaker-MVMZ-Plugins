@@ -1,7 +1,9 @@
-import * as Torigoya from "./Torigoya";
+import * as Plugin from "./Plugins";
 import * as Event from "./Events";
+import Info from "./Info";
 
 export default {
-  Torigoya,
+  Info,
+  Plugin,
   Event,
 };

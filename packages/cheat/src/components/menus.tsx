@@ -15,8 +15,11 @@ import {
   EmojiEvents,
   ExpandLess,
   ExpandMore,
+  Info,
 } from "@mui/icons-material";
 import Panels from "@/panel/panels";
+import { Recollection } from "@/panel/panels/Plugins";
+const { Event, Plugin } = Panels;
 
 export function useMenu() {
   return React.useMemo(() => _menus, []);
@@ -24,6 +27,11 @@ export function useMenu() {
 
 var _menus: (Menu | CollapsableMenu)[][] = [
   [
+    {
+      name: "Info",
+      icon: <Info />,
+      panel: <Panels.Info />,
+    },
     {
       name: "Items",
       icon: <AddShoppingCart />,
@@ -49,12 +57,12 @@ var _menus: (Menu | CollapsableMenu)[][] = [
         {
           name: "Map Events",
           icon: <AddCircle />,
-          panel: <Panels.Event.Events />,
+          panel: <Event.Events />,
         },
         {
           name: "Common Events",
           icon: <AddCircle />,
-          panel: <Panels.Event.CommonEvents />,
+          panel: <Event.CommonEvents />,
         },
       ],
     },
@@ -64,7 +72,7 @@ var _menus: (Menu | CollapsableMenu)[][] = [
         {
           name: "Torigoya",
           visible() {
-            return !!Torigoya;
+            return typeof Torigoya !== "undefined";
           },
           items: [
             {
@@ -73,9 +81,16 @@ var _menus: (Menu | CollapsableMenu)[][] = [
               visible() {
                 return !!Torigoya.Achievement;
               },
-              panel: <Panels.Torigoya.Achievement />,
+              panel: <Plugin.Torigoya.Achievement />,
             },
           ],
+        },
+        {
+          name: "Recollection",
+          visible() {
+            return Recollection.IsVisible();
+          },
+          panel: <Plugin.Recollection.default />,
         },
       ],
     },
