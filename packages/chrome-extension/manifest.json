@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "RPGMaker Cheat",
+    "description": "RPGMaker Cheat",
+    "version": "1.0",
+    "devtools_page": "devtools.html",
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ]
+}

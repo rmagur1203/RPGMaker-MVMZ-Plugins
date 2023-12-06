@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "inject": "lerna run build && lerna run inject"
+    "inject": "lerna run build && lerna run inject --concurrency=1"
   },
   "dependencies": {},
   "devDependencies": {

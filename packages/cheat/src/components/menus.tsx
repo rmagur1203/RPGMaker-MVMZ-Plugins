@@ -17,8 +17,8 @@ import {
   ExpandMore,
   Info,
 } from "@mui/icons-material";
-import Panels from "@/panel/panels";
-import { Recollection } from "@/panel/panels/Plugins";
+import Panels from "../panel/panels";
+import { Recollection } from "../panel/panels/Plugins";
 const { Event, Plugin } = Panels;
 
 export function useMenu() {

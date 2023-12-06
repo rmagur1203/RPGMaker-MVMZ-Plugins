@@ -10,10 +10,10 @@ const config: webpack.Configuration = {
   devtool: isDev ? "inline-source-map" : false,
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "save.js",
-    library: "save",
+    filename: "coordinate.js",
+    library: "coordinate",
     libraryTarget: "umd",
-    sourceMapFilename: "save.js.map",
+    sourceMapFilename: "coordinate.js.map",
   },
   module: {
     rules: [

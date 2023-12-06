@@ -5,11 +5,13 @@ const App = () => {
   const [y, setY] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       if (!window.$gamePlayer) return;
       setX(window.$gamePlayer.x ?? 0);
       setY(window.$gamePlayer.y ?? 0);
     }, 100);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (

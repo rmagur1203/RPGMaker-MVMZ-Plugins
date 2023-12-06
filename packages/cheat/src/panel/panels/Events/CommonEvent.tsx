@@ -1,4 +1,4 @@
-import Editor from "@/components/Editor";
+import Editor from "../../../components/Editor";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 

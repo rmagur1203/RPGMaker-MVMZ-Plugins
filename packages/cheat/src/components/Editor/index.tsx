@@ -11,7 +11,7 @@ import Modal from "../Modal";
 import BlocklyWorkspace from "../Blockly";
 import toolbox from "./toolbox";
 import "./blocks";
-import { CommonEventToBlocks, EventToBlocks } from "@/libs/Event";
+import { CommonEventToBlocks, EventToBlocks } from "../../libs/Event";
 
 interface EditorProps {
   open: boolean;

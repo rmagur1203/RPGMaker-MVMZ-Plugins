@@ -11,7 +11,7 @@
     "url": "git+https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins.git"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.ts",
+    "build": "rimraf dist && webpack --config webpack.config.ts",
     "inject": "injector -f dist/cheat.js -i info.json"
   },
   "bugs": {
@@ -24,6 +24,7 @@
     "@types/webpack": "^5.28.5",
     "css-loader": "^6.8.1",
     "path-browserify": "^1.0.1",
+    "rimraf": "^5.0.5",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
