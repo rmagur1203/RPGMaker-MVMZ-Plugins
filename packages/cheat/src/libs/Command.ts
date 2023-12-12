@@ -31,6 +31,49 @@ COMMANDS[0] = function (workspace, command) {
   return workspace.newBlock("nop");
 };
 
+COMMANDS[101] = function (workspace, command) {
+  const code = command.code;
+  const indent = command.indent;
+  const parameters = command.parameters;
+
+  let block = workspace.newBlock("command_101");
+  block.setFieldValue(parameters[0], "FACE_NAME");
+  block.setFieldValue(parameters[1], "FACE_INDEX");
+  block.setFieldValue(parameters[2], "BACKGROUND");
+  block.setFieldValue(parameters[3], "POSITION_TYPE");
+  (block as any).initSvg();
+
+  let lastConnection = block.getInput("CHILD")!.connection!;
+
+  while (
+    [401, 102, 103, 104].includes(this._instructions[this._index + 1].code)
+  ) {
+    this._index++;
+
+    const inst = this._instructions[this._index];
+    let child = null;
+    switch (inst.code) {
+      case 401:
+        child = workspace.newBlock("command_101_401");
+        child.setFieldValue(inst.parameters[0], "TEXT");
+        break;
+    }
+
+    (child as any).initSvg();
+
+    if (child) {
+      lastConnection.connect(child.previousConnection!);
+      lastConnection = child.nextConnection!;
+    }
+
+    if (inst.code !== 401) {
+      break;
+    }
+  }
+
+  return block;
+};
+
 COMMANDS[102] = function (workspace, command) {
   const code = command.code;
   const indent = command.indent;
@@ -215,6 +258,13 @@ COMMANDS[122] = function (workspace, command) {
   return block;
 };
 
+COMMANDS[222] = function (workspace, command) {
+  let block = workspace.newBlock("command_222");
+  (block as any).initSvg();
+
+  return block;
+};
+
 COMMANDS[230] = function (workspace, command) {
   const code = command.code;
   const indent = command.indent;
@@ -267,6 +317,18 @@ COMMANDS[235] = function (workspace, command) {
 
   let block = workspace.newBlock("command_235");
   block.setFieldValue(parameters[0], "ID");
+  (block as any).initSvg();
+
+  return block;
+};
+
+COMMANDS[241] = function (workspace, command) {
+  const code = command.code;
+  const indent = command.indent;
+  const parameters = command.parameters;
+
+  let block = workspace.newBlock("command_241");
+  block.setFieldValue(JSON.stringify(parameters[0], null, 2), "PARAM");
   (block as any).initSvg();
 
   return block;

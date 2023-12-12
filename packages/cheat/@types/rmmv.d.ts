@@ -13006,6 +13006,23 @@ declare class Window_Command extends Window_Selectable {
    */
   constructor(x: number, y: number);
   /**
+   * The list of commands within the window.
+   * @protected
+   * @type {Array<{
+   *    name: string;
+   *   symbol: string;
+   *  enabled: boolean;
+   * ext: any | object;
+   * }>}
+   * @memberof Window_Command
+   */
+  protected _list: Array<{
+    name: string;
+    symbol: string;
+    enabled: boolean;
+    ext: any | object;
+  }>;
+  /**
    * Returns the width of the window;
    * default is 240.
    * @returns {number}

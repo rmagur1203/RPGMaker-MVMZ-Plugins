@@ -1,6 +1,7 @@
 var rngd_recollection_mode_settings: rngd_recollection_mode_settings;
 var rngdRecollectionModeMZSettings: rngdRecollectionModeMZSettings;
 var rngdRecollectionGlobalContents: rngdRecollectionGlobalContents;
+var Window_RecList: any;
 
 interface Window {
   rngd_recollection_mode_settings: rngd_recollection_mode_settings;

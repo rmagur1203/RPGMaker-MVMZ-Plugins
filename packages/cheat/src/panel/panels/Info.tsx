@@ -1,31 +1,110 @@
-import React, { useEffect } from "react";
+import { BitmapToImage } from "@/components/RPGMaker/BitmapToImage";
+import { useScene } from "@/hooks/UseScene";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
-export default function InformationPanel() {
-  const [scene, setScene] = React.useState<Scene_Base>(SceneManager._scene);
-
-  useEffect(() => {
-    const original = SceneManager;
-
-    SceneManager = new Proxy(SceneManager, {
-      set(target, p, newValue, receiver) {
-        if (p === "_scene") {
-          setScene(newValue);
-        }
-        return Reflect.set(target, p, newValue, receiver);
-      },
-    });
-
-    return () => {
-      SceneManager = original;
-    };
-  }, []);
-
+function Command(command: Window_Command) {
   return (
-    <div>
-      <h1>Scene</h1>
+    <li key={command.constructor.name}>
+      {command.constructor.name}
       <ul>
-        <li>Name: {SceneManager?._scene?.constructor?.name}</li>
+        {
+          // @ts-expect-error
+          command._list.map((y) => (
+            <li key={y.name}>
+              {y.enabled ? "⭕" : "❌"}
+              {y.name} (
+              {command instanceof Window_Selectable && (
+                <button
+                  // @ts-expect-error
+                  onClick={() => console.log(command._handlers[y.symbol])}
+                >
+                  @onClick
+                </button>
+              )}
+              )
+            </li>
+          ))
+        }
       </ul>
-    </div>
+    </li>
   );
 }
+
+export default function InformationPanel() {
+  const scene = useScene();
+  const [children, setChildren] = useState<any[]>(scene?.children || []);
+
+  console.log(scene, scene?.children, children);
+
+  useEffect(() => {
+    if (!scene) return;
+    setChildren([...scene.children]);
+  }, [scene]);
+
+  useEffect(() => {
+    if (!scene) return;
+    const listener = (child: any, scene: Scene_Base, index: number) => {
+      setChildren([...scene.children]);
+    };
+
+    scene.on("childAdded", listener);
+
+    return () => {
+      scene.off("childAdded", listener);
+    };
+  }, [scene]);
+
+  return (
+    <Wrapper>
+      <h2>RPGMaker Info</h2>
+      <p>
+        {Utils.RPGMAKER_NAME || "Unknown"} v
+        {Utils.RPGMAKER_VERSION || "Unknown"}
+      </p>
+      {scene && (
+        <>
+          <h2>Scene</h2>
+          <ul>
+            <li>Name: {scene.constructor.name}</li>
+          </ul>
+          <h2>Commands</h2>
+          <ul>
+            {
+              // @ts-expect-error
+              (scene._windowLayer?.children ?? [])
+                .filter((x) => x instanceof Window_Command)
+                .map((x) => x as unknown as Window_Command)
+                .map(Command)
+            }
+          </ul>
+          <h2>Sprites</h2>
+          <ul>
+            {children
+              .filter((x) => x instanceof Sprite)
+              .map((x) => x as unknown as Sprite)
+              .filter((x) => x.bitmap?.url)
+              .map((x) => (
+                <span key={x.bitmap.url}>
+                  <p>{x.bitmap.url}</p>
+                  <SpriteImage bitmap={x.bitmap} />
+                </span>
+              ))}
+          </ul>
+        </>
+      )}
+    </Wrapper>
+  );
+}
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`;
+
+const SpriteImage = styled(BitmapToImage)`
+  max-height: 256px;
+  width: 100%;
+  object-fit: contain;
+`;

@@ -15,10 +15,12 @@ import {
   EmojiEvents,
   ExpandLess,
   ExpandMore,
+  Image,
   Info,
 } from "@mui/icons-material";
 import Panels from "../panel/panels";
 import { Recollection } from "../panel/panels/Plugins";
+import ImageViewer from "@/panel/panels/ImageViewer";
 const { Event, Plugin } = Panels;
 
 export function useMenu() {
@@ -31,6 +33,11 @@ var _menus: (Menu | CollapsableMenu)[][] = [
       name: "Info",
       icon: <Info />,
       panel: <Panels.Info />,
+    },
+    {
+      name: "Image Viewer",
+      icon: <Image />,
+      panel: <ImageViewer />,
     },
     {
       name: "Items",
@@ -86,11 +93,32 @@ var _menus: (Menu | CollapsableMenu)[][] = [
           ],
         },
         {
+          name: "SceneGlossary",
+          visible() {
+            return typeof Scene_Glossary !== "undefined";
+          },
+          panel: <Plugin.SceneGlossary.default />,
+        },
+        {
           name: "Recollection",
           visible() {
-            return Recollection.IsVisible();
+            return Recollection?.IsVisible?.();
           },
           panel: <Plugin.Recollection.default />,
+        },
+        {
+          name: "PersonalFIXMAkaisou",
+          visible() {
+            return typeof DataManager.MAkaisouOneeventopenadd === "function";
+          },
+          panel: <Plugin.PersonalFIXMA.Kaisou />,
+        },
+        {
+          name: "AB Enemy Book",
+          visible() {
+            return typeof Scene_EnemyBook !== "undefined";
+          },
+          panel: <Plugin.AB_EnemyBook.default />,
         },
       ],
     },

@@ -151,6 +151,8 @@ const Main = styled("main", {
 })<{
   open?: boolean;
 }>(({ theme, open }) => ({
+  width: "100%",
+  height: "height: calc(100% - 64px);",
   flexGrow: 1,
   padding: theme.spacing(3),
   transition: theme.transitions.create("margin", {

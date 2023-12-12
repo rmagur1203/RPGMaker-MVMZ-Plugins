@@ -235,6 +235,73 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
+    type: "command_101",
+    message0:
+      "Show Text %1 Face Image %2 %3 %4 Background %5 %6 Position Type %7 %8 %9",
+    args0: [
+      {
+        type: "input_end_row",
+      },
+      {
+        type: "field_input",
+        name: "FACE_NAME",
+        text: "faceName",
+      },
+      {
+        type: "field_input",
+        name: "FACE_INDEX",
+        text: "faceIndex",
+      },
+      {
+        type: "input_end_row",
+      },
+      {
+        type: "field_input",
+        name: "BACKGROUND",
+        text: "background",
+      },
+      {
+        type: "input_end_row",
+      },
+      {
+        type: "field_input",
+        name: "POSITION_TYPE",
+        text: "positionType",
+      },
+      {
+        type: "input_end_row",
+      },
+      {
+        type: "input_statement",
+        name: "CHILD",
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 180,
+    tooltip: "",
+    helpUrl: "",
+  },
+  {
+    type: "command_101_401",
+    message0: "Add Text %1 %2",
+    args0: [
+      {
+        type: "input_end_row",
+      },
+      {
+        type: "field_input",
+        name: "TEXT",
+        text: "text",
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 180,
+    tooltip: "",
+    helpUrl: "",
+  },
+  {
     type: "command_102",
     message0:
       "Show Choices %1 Choices: %2 Cancel Type: %3 %4 Default Type: %5 %6 Position Type: %7 %8 Background: %9",
@@ -401,6 +468,15 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
+    type: "command_222",
+    message0: "Fade In Screen",
+    previousStatement: null,
+    nextStatement: null,
+    colour: 180,
+    tooltip: "Fade In Effect",
+    helpUrl: "",
+  },
+  {
     type: "command_230",
     message0: "Wait %1",
     args0: [
@@ -509,6 +585,25 @@ Blockly.defineBlocksWithJsonArray([
     nextStatement: null,
     colour: 230,
     tooltip: "",
+    helpUrl: "",
+  },
+  {
+    type: "command_241",
+    message0: "Play BGM %1 %2",
+    args0: [
+      {
+        type: "input_end_row",
+      },
+      {
+        type: "field_input",
+        name: "PARAM",
+        text: "{}",
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 180,
+    tooltip: "Fade In Effect",
     helpUrl: "",
   },
   {

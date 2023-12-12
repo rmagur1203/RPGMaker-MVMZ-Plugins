@@ -20,10 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins.git"
   },
-  "scripts": {
-    "build": "rimraf dist && webpack --config webpack.config.ts",
-    "inject": "injector -f dist/coordinate.js -i info.json"
-  },
+  "scripts": {},
   "bugs": {
     "url": "https://github.com/rmagur1203/RPGMaker-MVMZ-Plugins/issues"
   },

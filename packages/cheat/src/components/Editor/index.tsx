@@ -58,6 +58,7 @@ export default function ({ open, onClose, event }: EditorProps) {
   useEffect(() => {
     const workspace = workspaceRef.current;
     if (!workspace || !event) return;
+    workspace.clear();
     if (isCommonEvent(event)) {
       CommonEventToBlocks(workspace, event);
     } else {

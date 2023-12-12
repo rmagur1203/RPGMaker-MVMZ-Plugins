@@ -28,7 +28,7 @@ export function CommonEventToBlocks(
   event: RPG.CommonEvent
 ) {
   const root = workspace.newBlock("event_start");
-  (root.workspace as any).initSvg();
+  (root as any).initSvg();
 
   const instructions = event.list;
   const interpreter: BlocklyInterpreter = {
@@ -50,7 +50,7 @@ export function CommonEventToBlocks(
     connection = block!.nextConnection!;
   }
 
-  (root.workspace as any).render();
+  (workspace as any).render();
 }
 
 export function EventToBlocks(workspace: Blockly.Workspace, event: RPG.Event) {
@@ -99,6 +99,6 @@ export function EventToBlocks(workspace: Blockly.Workspace, event: RPG.Event) {
       connection = block!.nextConnection!;
     }
 
-    (start.workspace as any).render();
+    (workspace as any).render();
   }
 }

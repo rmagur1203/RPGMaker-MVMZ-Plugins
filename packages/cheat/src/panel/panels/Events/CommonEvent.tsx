@@ -26,14 +26,21 @@ export function CommonEvents() {
               <H3>
                 {event.name} ({event.id})
               </H3>
-              <div>
+              <ButtonWrapper>
+                <button
+                  onClick={() => {
+                    ($gameMap as any)._interpreter.setup(event.list, 0);
+                  }}
+                >
+                  Call
+                </button>
                 <button
                   onClick={() => {
                     ($gameMap as any)._interpreter.setupChild(event.list, 0);
                     ($gameMap as any)._interpreter.updateChild();
                   }}
                 >
-                  Call
+                  Call As Child
                 </button>
                 <button
                   onClick={() => {
@@ -43,7 +50,7 @@ export function CommonEvents() {
                 >
                   Open Editor
                 </button>
-              </div>
+              </ButtonWrapper>
             </Event>
           )
         );
@@ -65,8 +72,15 @@ const Event = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 0 0 1px #000;
 `;
 
 const H3 = styled.h3`
   display: inline-block;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-right: 10px;
 `;
