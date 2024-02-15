@@ -1,6 +1,6 @@
 {
-    "name": "CoordinateDisplay",
+    "name": "LocalSaveLoad",
     "status": true,
-    "description": "CoordinateDisplay",
+    "description": "Load Local Save File in Browser",
     "parameters": {}
 }

@@ -22,7 +22,7 @@ export function CommonEvents() {
       {$dataCommonEvents.map((event, i) => {
         return (
           event && (
-            <Event>
+            <Event key={i}>
               <H3>
                 {event.name} ({event.id})
               </H3>

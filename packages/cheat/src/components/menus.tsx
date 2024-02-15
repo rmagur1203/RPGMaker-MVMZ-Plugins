@@ -90,6 +90,14 @@ var _menus: (Menu | CollapsableMenu)[][] = [
               },
               panel: <Plugin.Torigoya.Achievement />,
             },
+            {
+              name: "Achievement2",
+              icon: <EmojiEvents />,
+              visible() {
+                return !!Torigoya.Achievement2;
+              },
+              panel: <Plugin.Torigoya.Achievement2 />,
+            },
           ],
         },
         {
@@ -119,6 +127,13 @@ var _menus: (Menu | CollapsableMenu)[][] = [
             return typeof Scene_EnemyBook !== "undefined";
           },
           panel: <Plugin.AB_EnemyBook.default />,
+        },
+        {
+          name: "Another New Game",
+          visible() {
+            return PluginManager._scripts.includes("AnotherNewGame");
+          },
+          panel: <Plugin.AnotherNewGame.default />,
         },
       ],
     },

@@ -19,7 +19,8 @@ export function CommandToBlock(
     block = generator.call(this, workspace, command);
   } else if (!(Game_Interpreter.prototype as any)[`command${command.code}`]) {
     block = workspace.newBlock("nop");
-  } else if (!block) {
+  }
+  if (!block) {
     block = workspace.newBlock("unknown_command");
     block.setFieldValue(command.code.toString(), "CODE");
   }
@@ -59,9 +60,8 @@ COMMANDS[101] = function (workspace, command) {
         break;
     }
 
-    (child as any).initSvg();
-
     if (child) {
+      (child as any).initSvg();
       lastConnection.connect(child.previousConnection!);
       lastConnection = child.nextConnection!;
     }
@@ -100,15 +100,68 @@ COMMANDS[102] = function (workspace, command) {
   return block;
 };
 
-COMMANDS[112] = function (workspace, command) {
+COMMANDS[111] = function (workspace, command) {
   const code = command.code;
   const indent = command.indent;
   const parameters = command.parameters;
 
-  const block = workspace.newBlock("command_112");
+  let block;
+
+  switch (parameters[0]) {
+    case 0: // Switch
+      block = workspace.newBlock("command_111_0");
+      block
+        .getInput("VARIABLE")
+        ?.connection?.connect(SwitchBlock(parameters[1]).outputConnection!);
+      block.setFieldValue(parameters[2], "PARAM");
+      break;
+    case 1: // Variable
+      block = workspace.newBlock("command_111_1");
+      block
+        .getInput("VARIABLE")
+        ?.connection?.connect(VariableBlock(parameters[1]).outputConnection!);
+      if (parameters[2] === 0) {
+        let val = AutoBlock(parameters[3]);
+        if (!val) {
+          val = NumberBlock(parameters[3]);
+        }
+        block.getInput("VALUE")?.connection?.connect(val.outputConnection!);
+      } else {
+        block
+          .getInput("VALUE")
+          ?.connection?.connect(VariableBlock(parameters[3]).outputConnection!);
+      }
+      switch (parameters[4]) {
+        case 0:
+          block.setFieldValue("===", "OP");
+          break;
+        case 1:
+          block.setFieldValue(">=", "OP");
+          break;
+        case 2:
+          block.setFieldValue("<=", "OP");
+          break;
+        case 3:
+          block.setFieldValue(">", "OP");
+          break;
+        case 4:
+          block.setFieldValue("<", "OP");
+          break;
+        case 5:
+          block.setFieldValue("!==", "OP");
+          break;
+      }
+      break;
+  }
+
+  if (!block) {
+    return null;
+  }
+
   let lastConnection = block.getInput("CHILD")!.connection!;
 
-  while (this._instructions[this._index].indent > indent) {
+  while (this._instructions[this._index + 1].indent > indent) {
+    this._index++;
     const child = CommandToBlock.call(
       this,
       workspace,
@@ -118,7 +171,30 @@ COMMANDS[112] = function (workspace, command) {
       lastConnection.connect(child.previousConnection!);
       lastConnection = child.nextConnection!;
     }
+  }
+
+  return block;
+};
+
+COMMANDS[112] = function (workspace, command) {
+  const code = command.code;
+  const indent = command.indent;
+  const parameters = command.parameters;
+
+  const block = workspace.newBlock("command_112");
+  let lastConnection = block.getInput("CHILD")!.connection!;
+
+  while (this._instructions[this._index + 1].indent > indent) {
     this._index++;
+    const child = CommandToBlock.call(
+      this,
+      workspace,
+      this._instructions[this._index]
+    );
+    if (child) {
+      lastConnection.connect(child.previousConnection!);
+      lastConnection = child.nextConnection!;
+    }
   }
 
   return block;
@@ -154,6 +230,16 @@ COMMANDS[113] = function (workspace, command) {
   }
 
   COMMANDS[413] = original413;
+
+  return block;
+};
+
+COMMANDS[115] = function (workspace, command) {
+  const code = command.code;
+  const indent = command.indent;
+  const parameters = command.parameters;
+
+  const block = workspace.newBlock("command_115");
 
   return block;
 };
@@ -464,6 +550,13 @@ const BooleanBlock = (value: boolean) => {
 const VariableBlock = (variableId: number) => {
   const block = Blockly.common.getMainWorkspace().newBlock("get_game_variable");
   block.setFieldValue(variableId, "NAME");
+  (block as any).initSvg();
+  return block;
+};
+
+const SwitchBlock = (switchId: number) => {
+  const block = Blockly.common.getMainWorkspace().newBlock("get_game_switch");
+  block.setFieldValue(switchId, "NAME");
   (block as any).initSvg();
   return block;
 };

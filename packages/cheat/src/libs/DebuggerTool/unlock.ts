@@ -1,12 +1,18 @@
 import { findEvent, pageHasCondition, selfSwitchTools } from "./utils";
 
-export function unlockRange(x1: number, y1: number, x2: number, y2: number) {
+export function unlockRange(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  index = 1
+) {
   const events = $gameMap.events();
   for (const event of events) {
     const x = event.x;
     const y = event.y;
     if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
-      unlockEvent(x, y);
+      unlockEvent(x, y, index);
     }
   }
 }

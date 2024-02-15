@@ -7235,7 +7235,7 @@ interface SceneManagerStatic {
   isNextScene(sceneClass: () => void): boolean;
   isPreviousScene(sceneClass: () => void): boolean;
   goto(sceneClass: () => void): void;
-  push(sceneClass: new () => void): void;
+  push(sceneClass: () => void): void;
   pop(): void;
   exit(): void;
   clearStack(): void;

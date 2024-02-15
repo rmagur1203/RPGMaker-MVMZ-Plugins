@@ -2,18 +2,17 @@ import path from "path";
 import webpack from "webpack";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
-const isDev = process.env.NODE_ENV === "development";
+const isDev = process.env.NODE_ENV !== "production";
 
 const config: webpack.Configuration = {
   mode: isDev ? "development" : "production",
   entry: "./src/index.tsx",
-  devtool: isDev ? "inline-source-map" : false,
+  devtool: isDev ? "eval-source-map" : false,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "save.js",
     library: "save",
     libraryTarget: "umd",
-    sourceMapFilename: "save.js.map",
   },
   module: {
     rules: [

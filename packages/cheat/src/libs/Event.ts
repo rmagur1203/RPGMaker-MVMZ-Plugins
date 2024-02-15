@@ -37,11 +37,17 @@ export function CommonEventToBlocks(
     _stack: [],
   };
   let connection = root.nextConnection!;
-  while (interpreter._index < instructions.length) {
-    const instruction = instructions[interpreter._index++];
+  for (
+    interpreter._index = 0;
+    interpreter._index < instructions.length;
+    interpreter._index++
+  ) {
+    const instruction = instructions[interpreter._index];
     const code = instruction.code;
     const indent = instruction.indent;
     const parameters = instruction.parameters;
+
+    console.log(instruction, interpreter._index);
 
     const block = CommandToBlock.call(interpreter, root.workspace, instruction);
     (block as any).initSvg();
@@ -86,11 +92,17 @@ export function EventToBlocks(workspace: Blockly.Workspace, event: RPG.Event) {
       _stack: [],
     };
     let connection = start.nextConnection!;
-    while (interpreter._index < instructions.length) {
-      const instruction = instructions[interpreter._index++];
+    for (
+      interpreter._index = 0;
+      interpreter._index < instructions.length;
+      interpreter._index++
+    ) {
+      const instruction = instructions[interpreter._index];
       const code = instruction.code;
       const indent = instruction.indent;
       const parameters = instruction.parameters;
+
+      console.log(instruction, interpreter._index);
 
       const block = CommandToBlock.call(interpreter, workspace, instruction);
       (block as any).initSvg();

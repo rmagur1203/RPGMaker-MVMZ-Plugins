@@ -25,6 +25,12 @@ export default function ({ open, onClose, event }: EditorProps) {
   const [topBlock, setTopBlock] = useState<Blockly.Block | null>(null);
 
   const setup = useCallback((workspace: Blockly.WorkspaceSvg) => {
+    Blockly.Xml.domToWorkspace(
+      Blockly.utils.xml.textToDom(
+        `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`
+      ),
+      workspace
+    );
     workspace.addChangeListener(() => {
       const json = Blockly.serialization.workspaces.save(workspace);
       setJson(json);
@@ -58,7 +64,7 @@ export default function ({ open, onClose, event }: EditorProps) {
   useEffect(() => {
     const workspace = workspaceRef.current;
     if (!workspace || !event) return;
-    workspace.clear();
+    workspace.getAllBlocks().forEach((block) => block.dispose());
     if (isCommonEvent(event)) {
       CommonEventToBlocks(workspace, event);
     } else {

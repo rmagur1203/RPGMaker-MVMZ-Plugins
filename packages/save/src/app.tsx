@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Option from "./components/option";
 import JSZip from "jszip";
 import { GetSaveManager, SaveManager } from "./libs";
+import PluginManager from "./libs/plugins";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,11 +20,15 @@ const App = () => {
         if (!data) return;
         await saveManager.save(id, data);
       })
-    ).then(() => {
-      DataManager.loadGlobalInfo();
-      ConfigManager.load();
-      SceneManager.push(Scene_Title);
-    });
+    )
+      .then(() => {
+        PluginManager.getInstance().load();
+      })
+      .then(() => {
+        DataManager.loadGlobalInfo();
+        ConfigManager.load();
+        SceneManager.push(Scene_Title);
+      });
   }
 
   async function download() {
@@ -32,6 +37,12 @@ const App = () => {
 
     for (const id of saveManager.savefileIds) {
       const data = await saveManager.download(id);
+      if (!data) continue;
+      zip.file(data.name, data.data);
+    }
+
+    for (const data of await PluginManager.getInstance().download()) {
+      console.log(data);
       if (!data) continue;
       zip.file(data.name, data.data);
     }
@@ -52,11 +63,15 @@ const App = () => {
       saveManager.savefileIds.map(async (id) => {
         await saveManager.reset(id);
       })
-    ).then(() => {
-      DataManager.loadGlobalInfo();
-      ConfigManager.load();
-      SceneManager.push(Scene_Title);
-    });
+    )
+      .then(() => {
+        PluginManager.getInstance().reset();
+      })
+      .then(() => {
+        DataManager.loadGlobalInfo();
+        ConfigManager.load();
+        SceneManager.push(Scene_Title);
+      });
   }
 
   useEffect(() => {

@@ -3,7 +3,7 @@
 //=============================================================================
 
 const scriptUrls = [
-    "../../cheat/init/import.js",
+    "cheat/init/import.js",
     "js/libs/pixi.js",
     "js/libs/pako.min.js",
     "js/libs/localforage.min.js",

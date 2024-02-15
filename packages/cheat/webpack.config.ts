@@ -39,11 +39,7 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    plugins: [
-      new TsconfigPathsPlugin({
-        /* options: see below */
-      }),
-    ],
+    plugins: [new TsconfigPathsPlugin({})],
     fallback: {
       path: require.resolve("path-browserify"),
     },

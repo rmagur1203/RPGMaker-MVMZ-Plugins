@@ -45,4 +45,8 @@
         }
         return i;
     }
+
+    DataManager.isThisGameFile = function (savefileId) {
+        return true;
+    };
 })();

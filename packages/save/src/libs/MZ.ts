@@ -77,10 +77,11 @@ export class SaveManagerMZ extends SaveManager {
 
   async download(savefileId: number): Promise<FileType | null> {
     const data = await this.load(savefileId);
+    console.log(`savefile${savefileId}: ${data}`);
     if (!data) return null;
     return {
-      name: StorageManager.localFilePath(savefileId),
-      data: LZString.compressToBase64(data),
+      name: StorageManager.filePath(this.webStorageKey(savefileId)),
+      data,
     };
   }
 

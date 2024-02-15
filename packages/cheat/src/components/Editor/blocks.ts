@@ -123,6 +123,23 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
+    type: "get_game_switch",
+    message0: "$gameSwitch %1",
+    args0: [
+      {
+        type: "field_number",
+        name: "NAME",
+        value: 0,
+        min: 0,
+      },
+    ],
+    inputsInline: true,
+    output: null,
+    colour: 230,
+    tooltip: "",
+    helpUrl: "",
+  },
+  {
     type: "get_game_variable",
     message0: "$gameVariable %1",
     args0: [
@@ -351,6 +368,63 @@ Blockly.defineBlocksWithJsonArray([
     helpUrl: "",
   },
   {
+    type: "command_111_0",
+    message0: "If %1 == %2 %3 %4",
+    args0: [
+      {
+        type: "input_value",
+        name: "VARIABLE",
+      },
+      {
+        type: "field_input",
+        name: "PARAM",
+        text: "default",
+      },
+      {
+        type: "input_dummy",
+      },
+      {
+        type: "input_statement",
+        name: "CHILD",
+      },
+    ],
+    inputsInline: true,
+    previousStatement: null,
+    nextStatement: null,
+    colour: 230,
+    tooltip: "",
+    helpUrl: "",
+  },
+  {
+    type: "command_111_1",
+    message0: "If %1 %2 %3 %4",
+    args0: [
+      {
+        type: "input_value",
+        name: "VARIABLE",
+      },
+      {
+        type: "field_input",
+        name: "OP",
+        text: "==",
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+      },
+      {
+        type: "input_statement",
+        name: "CHILD",
+      },
+    ],
+    inputsInline: true,
+    previousStatement: null,
+    nextStatement: null,
+    colour: 230,
+    tooltip: "",
+    helpUrl: "",
+  },
+  {
     type: "command_112",
     message0: "Loop %1 %2",
     args0: [
@@ -383,6 +457,16 @@ Blockly.defineBlocksWithJsonArray([
     previousStatement: null,
     nextStatement: null,
     colour: 315,
+    tooltip: "",
+    helpUrl: "",
+  },
+  {
+    type: "command_115",
+    message0: "Exit",
+    inputsInline: true,
+    previousStatement: null,
+    nextStatement: null,
+    colour: 230,
     tooltip: "",
     helpUrl: "",
   },
