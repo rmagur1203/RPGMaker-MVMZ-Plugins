@@ -45,6 +45,13 @@ class MVRecollectionMode implements RecollectionModeBase {
         $gameSwitches.setValue(x, true);
       });
 
+    if (rngd_recollection_mode_settings.rec_cg_switch)
+      Object.values(rngd_recollection_mode_settings.rec_cg_switch).forEach(
+        (x) => {
+          $gameSwitches.setValue(x, true);
+        }
+      );
+
     // RecollectionMode.js v1.1.5
     Window_RecList.prototype.get_global_variables = function () {
       this._global_variables = {
@@ -64,7 +71,7 @@ class MZRecollectionMode implements RecollectionModeBase {
   unlockAll(): void {
     Object.entries(
       window[
-        rngdRecollectionModeMZSettings.recoCgSettingList as any
+      rngdRecollectionModeMZSettings.recoCgSettingList as any
       ] as unknown as CGSet
     )
       .map(([k, v]) => v.switch_id)

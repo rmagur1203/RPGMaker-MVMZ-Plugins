@@ -21,6 +21,7 @@ type CGSet = Record<
 
 type rngd_recollection_mode_settings = {
   rec_cg_set: CGSet;
+  rec_cg_switch: Record<string, number>;
   rec_list_window: {
     item_height: number;
     item_width: number;

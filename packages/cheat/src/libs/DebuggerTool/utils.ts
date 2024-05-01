@@ -32,3 +32,19 @@ export function selfSwitchTools(
   }
   return $gameSelfSwitches.value([mapId, eventId, selfSwitchCh]);
 }
+
+export function commonEventInfo(event: RPG.CommonEvent) {
+  return {
+    id: event.id,
+    name: event.name,
+    trigger: event.trigger,
+    switchId: event.switchId,
+    list: event.list,
+    referenceSwitches: event.list
+      .filter((command) => command.code === 111 && command.parameters[0] === 0)
+      .map((command) => command.parameters[1]),
+    referenceVariables: event.list
+      .filter((command) => command.code === 111 && command.parameters[0] === 1)
+      .map((command) => command.parameters[1]),
+  };
+}

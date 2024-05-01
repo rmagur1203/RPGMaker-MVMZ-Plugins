@@ -1,5 +1,10 @@
 import { unlockEvent, unlockRange } from "./unlock";
-import { findEvent, pageHasCondition, selfSwitchTools } from "./utils";
+import {
+  commonEventInfo,
+  findEvent,
+  pageHasCondition,
+  selfSwitchTools,
+} from "./utils";
 import Plugin from "./plugin";
 
 window.DebuggerTool = {
@@ -9,4 +14,5 @@ window.DebuggerTool = {
   pageHasCondition,
   selfSwitchTools,
   Plugin,
+  commonEventInfo,
 };
