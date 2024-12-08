@@ -5,17 +5,9 @@ import styled from "styled-components";
 export function Events() {
   const [modal, setModal] = React.useState(false);
   const [event, setEvent] = React.useState<RPG.Event | null>(null);
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    ref.current?.addEventListener("contextmenu", (event) => {
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-    });
-  }, [ref.current]);
 
   return (
-    <Wrapper ref={ref}>
+    <Wrapper>
       <h1>Map Events</h1>
       <h2>Scene</h2>
       {/* <button onClick={() => setModal(true)}>Open Editor</button> */}

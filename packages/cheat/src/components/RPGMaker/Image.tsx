@@ -14,7 +14,7 @@ export function MZImage({ folder, filename }: Props) {
     const bitmap = ImageManager.loadBitmap(folder, filename);
 
     bitmap.addLoadListener(() => {
-      const blob = bitmap.canvas.toBlob((blob) => {
+      bitmap.canvas.toBlob((blob) => {
         setBlob(blob);
       });
     });

@@ -12,11 +12,13 @@ import {
   AddModerator,
   AddShoppingCart,
   AutoFixHigh,
+  Construction,
   EmojiEvents,
   ExpandLess,
   ExpandMore,
   Image,
   Info,
+  Today,
 } from "@mui/icons-material";
 import Panels from "../panel/panels";
 import { Recollection } from "../panel/panels/Plugins";
@@ -27,7 +29,7 @@ export function useMenu() {
   return React.useMemo(() => _menus, []);
 }
 
-var _menus: (Menu | CollapsableMenu)[][] = [
+const _menus: (Menu | CollapsableMenu)[][] = [
   [
     {
       name: "Info",
@@ -59,7 +61,7 @@ var _menus: (Menu | CollapsableMenu)[][] = [
     },
     {
       name: "Events",
-      icon: <AddShoppingCart />,
+      icon: <Today />,
       items: [
         {
           name: "Map Events",
@@ -70,6 +72,23 @@ var _menus: (Menu | CollapsableMenu)[][] = [
           name: "Common Events",
           icon: <AddCircle />,
           panel: <Event.CommonEvents />,
+        },
+      ],
+    },
+    {
+      name: "Tools",
+      icon: <Construction />,
+      items: [
+        {
+          name: "Image",
+          icon: <Image />,
+          items: [
+            {
+              name: "Image History",
+              icon: <Image />,
+              panel: <Panels.Tools.ImageHistory />,
+            },
+          ],
         },
       ],
     },
@@ -117,7 +136,9 @@ var _menus: (Menu | CollapsableMenu)[][] = [
         {
           name: "PersonalFIXMAkaisou",
           visible() {
-            return typeof DataManager.MAkaisouOneeventopenadd === "function";
+            return (
+              typeof (DataManager as any).MAkaisouOneeventopenadd === "function"
+            );
           },
           panel: <Plugin.PersonalFIXMA.Kaisou />,
         },

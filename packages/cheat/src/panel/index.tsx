@@ -1,15 +1,10 @@
 import {
   Box,
-  Collapse,
   CssBaseline,
   Divider,
   Drawer,
   IconButton,
   List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Typography,
   styled,
@@ -29,7 +24,20 @@ import {
 
 const drawerWidth = 240;
 
-export default function () {
+function freeEvent(element: HTMLElement) {
+  element.oncontextmenu = (event) => {
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+  };
+
+  element.childNodes.forEach((child) => {
+    if (child instanceof HTMLElement) {
+      freeEvent(child);
+    }
+  });
+}
+
+export default function Panel() {
   const theme = useTheme();
   const menus = useMenu();
   const [open, setOpen] = React.useState(false);
@@ -45,10 +53,7 @@ export default function () {
   };
 
   useEffect(() => {
-    ref.current?.addEventListener("mousedown", (event) => {
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-    });
+    if (ref.current) freeEvent(ref.current);
   }, [ref.current]);
 
   return (
@@ -60,7 +65,6 @@ export default function () {
           width: "100%",
           height: "100%",
         }}
-        ref={ref}
       >
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -117,7 +121,7 @@ export default function () {
             </List>
           ))}
         </Drawer>
-        <Main open={open} sx={{ mt: "64px" }}>
+        <Main open={open} sx={{ mt: "64px" }} ref={ref}>
           {item.panel}
         </Main>
       </Box>
