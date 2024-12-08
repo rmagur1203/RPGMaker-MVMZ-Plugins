@@ -7,10 +7,11 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "inject": "lerna run build && lerna run inject --concurrency=1"
+    "inject": "lerna run build && lerna run inject --concurrency=1",
+    "server": "cross-env DOTENV_CONFIG_PATH=../../.env pnpm --filter server run start"
   },
-  "dependencies": {},
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "lerna": "^7.4.1",
     "typescript": "^5.2.2"
   }

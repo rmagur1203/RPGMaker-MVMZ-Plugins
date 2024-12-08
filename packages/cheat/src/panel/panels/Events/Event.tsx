@@ -22,7 +22,7 @@ export function Events() {
       {$gameMap.events().map((event, i) => {
         return (
           event && (
-            <Event>
+            <Event key={i}>
               <H3>
                 {event.event().name} ({event.x}, {event.y})
               </H3>

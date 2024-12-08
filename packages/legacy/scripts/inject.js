@@ -19,7 +19,7 @@ fs.readdirSync('./lib', {
 });
 
 const _ = process.argv[2] || process.env.INJECTOR_PATH;
-const root = fs.existsSync(path.join(_, "www")) ? path.join(_, "www") : _;
+const root = fs.existsSync(path.join(_, "www/js")) ? path.join(_, "www") : _;
 
 if (!fs.existsSync(path.join(root, "cheat"))) {
     if (fs.existsSync(path.join(root, "js", "rpg_core.js"))) {

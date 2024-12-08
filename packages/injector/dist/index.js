@@ -3,18 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = inject;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = require("path");
 const vm_1 = __importDefault(require("vm"));
 const plugin_1 = require("./utils/plugin");
 function inject(path, jsFile, infoFile, setupFile) {
-    const root = fs_1.default.existsSync((0, path_1.join)(path, "www")) ? (0, path_1.join)(path, "www") : path;
+    const root = fs_1.default.existsSync((0, path_1.join)(path, "www/js")) ? (0, path_1.join)(path, "www") : path;
     global.root = root;
     const plugins = loadPluginsJS(root);
     injectPlugins(root, plugins, jsFile, infoFile, setupFile);
     patchPluginJS(root, plugins);
 }
-exports.default = inject;
 function loadPluginsJS(root) {
     const content = fs_1.default.readFileSync((0, plugin_1.getPluginJSPath)(root), "utf8");
     const context = {};
